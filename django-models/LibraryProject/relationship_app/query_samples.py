@@ -19,20 +19,25 @@ librarian = Librarian.objects.create(name="Mary Johnson", library=library)
 
 # --- Queries ---
 
-# 1️⃣ Query all books by a specific author
-author_books = Book.objects.filter(author__name="Gabriel Garcia Marquez")
-print("Books by Gabriel Garcia Marquez:")
-for book in author_books:
+# 1️⃣ Retrieve author instance using get()
+author_name = "Gabriel Garcia Marquez"
+author_instance = Author.objects.get(name=author_name)
+print(f"Author retrieved: {author_instance.name}")
+
+# 2️⃣ Query all books by that specific author (using the author instance)
+books_by_author = Book.objects.filter(author=author_instance)
+print(f"\nBooks by {author_instance.name}:")
+for book in books_by_author:
     print("-", book.title)
 
-# 2️⃣ List all books in a library using get()
+# 3️⃣ List all books in a library
 library_name = "Central City Library"
-library_instance = Library.objects.get(name=library_name)  # <--- This was missing
+library_instance = Library.objects.get(name=library_name)
 library_books = library_instance.books.all()
 print(f"\nBooks in {library_name}:")
 for book in library_books:
     print("-", book.title)
 
-# 3️⃣ Retrieve the librarian for a library
+# 4️⃣ Retrieve the librarian for a library
 library_librarian = library_instance.librarian
 print(f"\nLibrarian of {library_name}: {library_librarian.name}")
