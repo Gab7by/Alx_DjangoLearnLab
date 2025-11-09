@@ -7,7 +7,7 @@ django.setup()
 
 from relationship_app.models import Author, Book, Library, Librarian
 
-# Sample data creation
+# --- Sample Data Creation ---
 author = Author.objects.create(name="Gabriel Garcia Marquez")
 book1 = Book.objects.create(title="One Hundred Years of Solitude", author=author)
 book2 = Book.objects.create(title="Love in the Time of Cholera", author=author)
@@ -25,12 +25,14 @@ print("Books by Gabriel Garcia Marquez:")
 for book in author_books:
     print("-", book.title)
 
-# 2️⃣ List all books in a library
-library_books = library.books.all()
-print(f"\nBooks in {library.name}:")
+# 2️⃣ List all books in a library using get()
+library_name = "Central City Library"
+library_instance = Library.objects.get(name=library_name)  # <--- This was missing
+library_books = library_instance.books.all()
+print(f"\nBooks in {library_name}:")
 for book in library_books:
     print("-", book.title)
 
 # 3️⃣ Retrieve the librarian for a library
-library_librarian = library.librarian
-print(f"\nLibrarian of {library.name}: {library_librarian.name}")
+library_librarian = library_instance.librarian
+print(f"\nLibrarian of {library_name}: {library_librarian.name}")
