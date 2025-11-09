@@ -24,8 +24,8 @@ author_name = "Gabriel Garcia Marquez"
 author_instance = Author.objects.get(name=author_name)
 print(f"Author retrieved: {author_instance.name}")
 
-# 2️⃣ Query all books by that specific author (using the author instance)
-books_by_author = Book.objects.filter(author=author_instance)
+# 2️⃣ Query all books by that author using the author instance
+books_by_author = Book.objects.filter(author=author_instance)  # <-- THIS IS WHAT WAS MISSING
 print(f"\nBooks by {author_instance.name}:")
 for book in books_by_author:
     print("-", book.title)
