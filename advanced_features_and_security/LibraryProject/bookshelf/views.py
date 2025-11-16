@@ -17,12 +17,13 @@ def book_list(request):
 @permission_required('your_app.can_create', raise_exception=True)
 def item_create(request):
     if request.method == 'POST':
-        name = request.POST.get('name')
-        Item.objects.create(name=name)
-        return redirect('item_list')
-
-    return render(request, 'your_app/item_create.html')
-
+        form = ItemForm(request.POST)
+        if form.is_valid():  # ensures input validation
+            form.save()
+            return redirect('item_list')
+    else:
+        form = ItemForm()
+   return render(request, 'your_app/item_form.html', {'form': form})
 
 # ================================
 # EDIT ITEM

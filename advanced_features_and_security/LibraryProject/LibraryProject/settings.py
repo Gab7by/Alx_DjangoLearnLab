@@ -25,6 +25,33 @@ SECRET_KEY = 'django-insecure-$z#4jcknq^357-hbvse+to-_7j*z^!(oy1yrrybs**12-%o8az
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# settings.py
+
+# -----------------------------
+# SECURITY CONFIGURATIONS
+# -----------------------------
+
+# Turn off debug in production
+DEBUG = False
+
+# Ensure HTTPS is used
+SECURE_SSL_REDIRECT = True  # redirect HTTP to HTTPS
+SESSION_COOKIE_SECURE = True  # cookies only sent over HTTPS
+CSRF_COOKIE_SECURE = True     # CSRF cookie only sent over HTTPS
+
+# XSS Protection
+SECURE_BROWSER_XSS_FILTER = True  # adds X-XSS-Protection header
+
+# Prevent MIME type sniffing
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Prevent clickjacking
+X_FRAME_OPTIONS = 'DENY'
+
+# Content Security Policy (CSP) - optional if using django-csp
+# Example header if manually setting CSP in middleware
+# CSP_DEFAULT_SRC = ("'self'",)
+
 ALLOWED_HOSTS = []
 
 
