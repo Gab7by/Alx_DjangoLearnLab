@@ -52,7 +52,7 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.email
     
-class Recipe(models.Model):
+class Book(models.Model):
     title = models.CharField(max_length=150)
     description = models.TextField()
 
