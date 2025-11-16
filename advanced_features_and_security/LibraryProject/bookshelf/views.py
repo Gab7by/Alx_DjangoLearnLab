@@ -1,13 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import permission_required
-from .models import Item   # <-- replace Item with your actual model
+from .models import books   # <-- replace Item with your actual model
 
 # ================================
 # VIEW ITEMS
 # ================================
 @permission_required('your_app.can_view', raise_exception=True)
-def item_list(request):
-    items = Item.objects.all()
+def book_list(request):
+    books = Item.objects.all()
     return render(request, 'your_app/item_list.html', {'items': items})
 
 
