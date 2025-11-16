@@ -51,3 +51,18 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.email
+    
+class Recipe(models.Model):
+    title = models.CharField(max_length=150)
+    description = models.TextField()
+
+    class Meta:
+        permissions = [
+            ("can_view", "Can view recipe"),
+            ("can_create", "Can create recipe"),
+            ("can_edit", "Can edit recipe"),
+            ("can_delete", "Can delete recipe"),
+        ]
+
+    def __str__(self):
+        return self.title
