@@ -15,8 +15,8 @@ class BookAPITestCase(APITestCase):
         )
 
         # API client for authenticated user
-        self.client_auth = APIClient()
-        self.client_auth.login(username="testuser", password="password123")
+        self.client = APIClient()
+        self.client.login(username="testuser", password="password123")
 
         # Create sample books
         self.book1 = Book.objects.create(
