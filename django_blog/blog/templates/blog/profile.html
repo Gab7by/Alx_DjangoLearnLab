@@ -1,0 +1,12 @@
+{% extends "blog/base.html" %} {% block title %}Profile{% endblock %} {% block
+content %}
+<h2>Your Profile</h2>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %} {{ u_form.as_p }} {% comment %} If you included a Profile
+  model with avatar/bio, add its form fields here and include
+  enctype="multipart/form-data" {% endcomment %}
+  <button type="submit">Save changes</button>
+</form>
+<p>Username: {{ request.user.username }}</p>
+<p>Email: {{ request.user.email }}</p>
+{% endblock %}
