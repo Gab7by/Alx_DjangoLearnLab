@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %} {% block content %}
+<h1>Tags</h1>
+<ul>
+  {% for tag in tags %}
+  <li>
+    <a href="{% url 'posts-by-tag' tag.name %}">{{ tag.name }}</a> ({{
+    tag.posts.count }})
+  </li>
+  {% empty %}
+  <li>No tags yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
